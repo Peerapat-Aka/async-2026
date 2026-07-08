@@ -1,4 +1,4 @@
-# Objective: Learn how to query the lifecycle status of a task object.
+# วัตถุประสงค์: เรียนรู้วิธีตรวจสอบสถานะวงจรชีวิตของออบเจกต์ Task
 import asyncio
 from time import ctime
 
@@ -9,14 +9,14 @@ async def short_job():
 async def main():
     task = asyncio.create_task(short_job())
     
-    # 
-    print(f"{ctime()} Is task done? {task.done()}")          # 
-    print(f"{ctime()} Is task canceled? {task.cancelled()}")  # 
+    # ตรวจสอบสถานะก่อน Task จะทำงานเสร็จ
+    print(f"{ctime()} Is task done? {task.done()}")          # ตรวจสอบว่างานเสร็จหรือยัง
+    print(f"{ctime()} Is task canceled? {task.cancelled()}")  # ตรวจสอบว่างานถูกยกเลิกหรือยัง
     
-    await task # 
+    await task # รอให้ Task ทำงานจนเสร็จ
     
-    # Inspect status again after it finishes
-    print(f"{ctime()} Is task done now? {task.done()}")      # 
-    print(f"{ctime()} Is task canceled now? {task.cancelled()}") # 
+    # ตรวจสอบสถานะอีกครั้งหลังจากทำงานเสร็จแล้ว
+    print(f"{ctime()} Is task done now? {task.done()}")      # ควรเป็น True
+    print(f"{ctime()} Is task canceled now? {task.cancelled()}") # ควรเป็น False
 
 asyncio.run(main())
